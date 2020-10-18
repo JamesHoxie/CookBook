@@ -1,0 +1,24 @@
+.page {
+    background-color: lightyellow;
+    display: inline-block;
+    width : 45%;
+    max-width: 45%;
+    min-width: 45%;
+    height: 90%;
+    max-height: 90%;
+    min-height: 90%;
+    overflow-y:auto; /* add scroll bar to recipe page when ingredients won't fit on one page*/
+  }
+
+.ingredients {
+  text-align: left;
+}
+
+img {
+  width: auto;
+  height: 60%;
+}
+  
+.right {
+    border-left: solid black 0.25em;
+  }
