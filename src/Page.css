@@ -22,3 +22,12 @@ img {
 .right {
     border-left: solid black 0.25em;
   }
+
+.ingredient:hover {
+  border: solid black 0.15em;
+  border-radius: 5%;
+}
+
+button.convert-button {
+  margin-left: 14em;
+}
