@@ -28,8 +28,25 @@ function Page(props) {
       setRecipeMeasurements(props);
     }, [props]);
 
+    // close and open conversion buttons below ingredients
     function toggle() {
       setIsOpened(wasOpened => !wasOpened);
+    }
+
+    // convert selected ingredients 
+    const convert = e => {
+      // const id = e.target.id;
+      // NOTE: passing the target (button) is no longer necessary but i am leaving it for now for educational purposes as i learn react
+
+      const selectFrom = document.querySelector('#convert-from-options');
+      const convertFrom = selectFrom.options[selectFrom.selectedIndex].text;
+
+      const selectTo = document.querySelector('#convert-to-options');
+      const convertTo = selectTo.options[selectTo.selectedIndex].text;
+        
+      console.log(convertFrom,convertTo);
+
+      // TODO: api fetch call to spoonacular to convert amounts
     }
     
     return (
@@ -44,18 +61,31 @@ function Page(props) {
               {recipe.ingredients.map((ingredient, index) => {
                 return <li key={index.toString()}className="ingredient">
                           <strong>{ingredient.name}</strong>: {ingredient.amount + " "} 
+                        
+                          {/* {(!isOpened || (isOpened && (ingredient.unit === 'slices' || ingredient.unit === ''))) && 
+                            <span>{ingredient.unit}</span>
+                          } */}
+
+                          <span>{ingredient.unit}</span>
                           
-                          {!isOpened && 
-                            ingredient.unit
-                          } 
-                          
-                          {isOpened && 
-                            <select className="convert-options">
-                              <option>{ingredient.unit}</option>
-                              {units.map((unit, index) => {
-                                return <option key={index.toString()}>{`${unit}`}</option>   
+                          {isOpened && ingredient.unit !== 'slices' && ingredient.unit !== '' &&
+                            <div>
+                              <select id="convert-from-options">
+                                {ingredient.unit !== 'slices' && ingredient.unit !== '' && 
+                                  units.map((unit, index) => {
+                                    return <option key={index.toString()}>{`${unit}`}</option>   
                               })}
-                            </select>
+                              </select>
+                              
+                              <button id="panda" onClick={convert}>Convert to</button>
+                              
+                              <select id="convert-to-options">
+                                {ingredient.unit !== 'slices' && ingredient.unit !== '' && 
+                                  units.map((unit, index) => {
+                                    return <option key={index.toString()}>{`${unit}`}</option>   
+                                })}
+                              </select>
+                            </div>
                           }
                        </li>
               })}
