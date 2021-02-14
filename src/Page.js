@@ -17,7 +17,7 @@ function importAll(r) {
 const images = importAll(require.context('./recipe-images', false, /\.(png|jpe?g|svg)$/));
 
 // set of all ingredient amounts for displaying in conversion selection drop down
-const units = ["tsp", "tbsp", "cups", "L", "mL", "kg", "g", "mg"];
+const units = ["tsp", "tbsp", "cups", "L", "mL", "kg", "g", "mg", "oz", "lb"];
 
 function Page(props) {
     const {recipe, side = "left"} = props;
@@ -95,10 +95,10 @@ function Page(props) {
                           
                           {isOpened && ingredient.unit !== 'slices' && ingredient.unit !== '' &&
                             <div>
-                              <select className="convert-from-options">
+                              <select className="convert-from-options" defaultValue={ingredient.unit}>
                                 {ingredient.unit !== 'slices' && ingredient.unit !== '' && 
                                   units.map((unit, index) => {
-                                    return <option key={index.toString()}>{`${unit}`}</option>   
+                                    return <option key={index.toString()} value={unit}>{`${unit}`}</option>      
                               })}
                               </select>
                               
