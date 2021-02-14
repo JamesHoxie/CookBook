@@ -34,14 +34,39 @@ function Page(props) {
     }
 
     // convert selected ingredients 
-    const convert = e => {
-      // const id = e.target.id;
-      // NOTE: passing the target (button) is no longer necessary but i am leaving it for now for educational purposes as i learn react
+    const convert = (event) => {
+      
+      let ingredientAmount = null;
 
-      const selectFrom = document.querySelector('#convert-from-options');
+      // IMPORTANT NOTE:
+      // this line will not work if the ingredient li structure is modified
+      const liElement = event.target.parentElement.parentElement; 
+      // selecting parent of parent of clicked button in li to access the span element with the ingredient amount
+      
+      liElement.childNodes.forEach(element => {
+        if(element.className === 'ingredient-amount') {
+          let ingredientAmountParts = element.textContent.split('/'); // some amounts are in fractions, split and divide to get number
+
+          if(ingredientAmountParts.length === 2) {
+            ingredientAmount = parseInt(ingredientAmountParts[0]) / parseInt(ingredientAmountParts[1]);
+          } else {
+            ingredientAmount = parseInt(element.textContent);
+          }
+          
+        }
+      });
+      
+      console.log(ingredientAmount);
+
+      // IMPORTANT NOTE:
+      // this line will also not work if the ingredient li structure is modified
+      const divElement = event.target.parentElement;
+      // selecting parent of clicked button in li to access the select elements to get the ingredient units
+
+      const selectFrom = divElement.firstChild;
       const convertFrom = selectFrom.options[selectFrom.selectedIndex].text;
 
-      const selectTo = document.querySelector('#convert-to-options');
+      const selectTo = divElement.lastChild;
       const convertTo = selectTo.options[selectTo.selectedIndex].text;
         
       console.log(convertFrom,convertTo);
@@ -59,8 +84,8 @@ function Page(props) {
           <div className="ingredients">
             <ul>
               {recipe.ingredients.map((ingredient, index) => {
-                return <li key={index.toString()}className="ingredient">
-                          <strong>{ingredient.name}</strong>: {ingredient.amount + " "} 
+                return <li key={index.toString()} className="ingredient">
+                          <strong>{ingredient.name}</strong>: <span className="ingredient-amount">{ingredient.amount + " "}</span>
                         
                           {/* {(!isOpened || (isOpened && (ingredient.unit === 'slices' || ingredient.unit === ''))) && 
                             <span>{ingredient.unit}</span>
@@ -70,16 +95,16 @@ function Page(props) {
                           
                           {isOpened && ingredient.unit !== 'slices' && ingredient.unit !== '' &&
                             <div>
-                              <select id="convert-from-options">
+                              <select className="convert-from-options">
                                 {ingredient.unit !== 'slices' && ingredient.unit !== '' && 
                                   units.map((unit, index) => {
                                     return <option key={index.toString()}>{`${unit}`}</option>   
                               })}
                               </select>
                               
-                              <button id="panda" onClick={convert}>Convert to</button>
+                              <button className="convert-button" onClick={convert}>Convert to</button>
                               
-                              <select id="convert-to-options">
+                              <select className="convert-to-options">
                                 {ingredient.unit !== 'slices' && ingredient.unit !== '' && 
                                   units.map((unit, index) => {
                                     return <option key={index.toString()}>{`${unit}`}</option>   
