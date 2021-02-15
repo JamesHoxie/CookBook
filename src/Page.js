@@ -34,10 +34,12 @@ function Page(props) {
     }
 
     // convert selected ingredients 
-    const convert = (event) => {
+    const convert = async (event) => {
       
       let ingredientAmount = null;
       let ingredientType = null;
+      let ingredientAmountElement = null;
+      let ingredientUnitElement = null;
 
       // IMPORTANT NOTE:
       // this line will not work if the ingredient li structure is modified
@@ -48,7 +50,8 @@ function Page(props) {
 
       liElement.childNodes.forEach(element => {
         if(element.className === 'ingredient-amount') {
-          let ingredientAmountParts = element.textContent.split('/'); // some amounts are in fractions, split and divide to get number
+          ingredientAmountElement = element; // store ref to update amount after conversion
+          let ingredientAmountParts = ingredientAmountElement.textContent.split('/'); // some amounts are in fractions, split and divide to get number
 
           if(ingredientAmountParts.length === 2) {
             ingredientAmount = parseInt(ingredientAmountParts[0]) / parseInt(ingredientAmountParts[1]);
@@ -56,6 +59,8 @@ function Page(props) {
             ingredientAmount = parseInt(element.textContent);
           }
           
+        } else if(element.className === 'ingredient-unit') {
+          ingredientUnitElement = element;
         }
       });
       
@@ -76,18 +81,14 @@ function Page(props) {
       console.log(ingredientType);
 
       //api fetch call to spoonacular to convert amounts
-      callSpoonacular(ingredientType, ingredientAmount, convertFrom, convertTo);
+      const convertedAmount = await callSpoonacular(ingredientType, ingredientAmount, convertFrom, convertTo);
+
+      ingredientAmountElement.textContent = `${convertedAmount} `;
+      ingredientUnitElement.textContent = convertTo;
     }
 
     // perform fetch call to spoonacular api to convert ingredient amounts
     function callSpoonacular(ingredientName, sourceAmount, sourceUnit, targetUnit) {
-      // const params = {
-      //   'ingredientName': ingredientName,
-      //   'sourceAmount': sourceAmount,
-      //   'sourceUnit': sourceUnit,
-      //   'targetUnit': targetUnit
-      // };
-
       const params = {
         'ingredientName': ingredientName,
         'sourceAmount': sourceAmount,
@@ -101,12 +102,13 @@ function Page(props) {
       // set query strings on request
       url.search = new URLSearchParams(params).toString();
       
-      fetch(url)
+      return fetch(url)
       .then(resp => {
         return resp.json();
       })
       .then(data => {
-        console.log('success!\n', data.answer);
+        console.log('success!\n', data.targetAmount);
+        return data.targetAmount;
       })
       .catch(err => {
         console.log('something went wrong converting the ingredients\n', err);
@@ -130,7 +132,7 @@ function Page(props) {
                             <span>{ingredient.unit}</span>
                           } */}
 
-                          <span>{ingredient.unit}</span>
+                          <span className="ingredient-unit">{ingredient.unit}</span>
                           
                           {isOpened && ingredient.unit !== 'slices' && ingredient.unit !== '' &&
                             <div>
