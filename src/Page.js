@@ -37,12 +37,15 @@ function Page(props) {
     const convert = (event) => {
       
       let ingredientAmount = null;
+      let ingredientType = null;
 
       // IMPORTANT NOTE:
       // this line will not work if the ingredient li structure is modified
       const liElement = event.target.parentElement.parentElement; 
       // selecting parent of parent of clicked button in li to access the span element with the ingredient amount
       
+      ingredientType = liElement.firstChild.textContent;
+
       liElement.childNodes.forEach(element => {
         if(element.className === 'ingredient-amount') {
           let ingredientAmountParts = element.textContent.split('/'); // some amounts are in fractions, split and divide to get number
@@ -70,8 +73,44 @@ function Page(props) {
       const convertTo = selectTo.options[selectTo.selectedIndex].text;
         
       console.log(convertFrom,convertTo);
+      console.log(ingredientType);
 
-      // TODO: api fetch call to spoonacular to convert amounts
+      //api fetch call to spoonacular to convert amounts
+      callSpoonacular(ingredientType, ingredientAmount, convertFrom, convertTo);
+    }
+
+    // perform fetch call to spoonacular api to convert ingredient amounts
+    function callSpoonacular(ingredientName, sourceAmount, sourceUnit, targetUnit) {
+      // const params = {
+      //   'ingredientName': ingredientName,
+      //   'sourceAmount': sourceAmount,
+      //   'sourceUnit': sourceUnit,
+      //   'targetUnit': targetUnit
+      // };
+
+      const params = {
+        'ingredientName': ingredientName,
+        'sourceAmount': sourceAmount,
+        'sourceUnit': sourceUnit,
+        'targetUnit': targetUnit,
+        'apiKey': '397e85a7d385419d8e083635fe5a78f3'
+      };
+
+      const url = new URL('https://api.spoonacular.com/recipes/convert');
+
+      // set query strings on request
+      url.search = new URLSearchParams(params).toString();
+      
+      fetch(url)
+      .then(resp => {
+        return resp.json();
+      })
+      .then(data => {
+        console.log('success!\n', data.answer);
+      })
+      .catch(err => {
+        console.log('something went wrong converting the ingredients\n', err);
+      }); 
     }
     
     return (
