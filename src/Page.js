@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Page.css';
 
 // import all images of recipes for Pages to use to display their respective recipes
@@ -21,16 +21,26 @@ const units = ["tsp", "tbsp", "cups", "L", "mL", "kg", "g", "mg", "oz", "lb"];
 
 function Page(props) {
     const {recipe, side = "left"} = props;
-    const [recipeMeasurements, setRecipeMeasurements] = useState(recipe);
+    const setRecipeMeasurements = useState(recipe.ingredients)[1];
     const [isOpened, setIsOpened] = useState(false);
-
-    useEffect(() => {
-      setRecipeMeasurements(props);
-    }, [props]);
 
     // close and open conversion buttons below ingredients
     function toggle() {
       setIsOpened(wasOpened => !wasOpened);
+    }
+
+    function updateRecipeMeasurements(ingredientType, convertedAmount, newUnits) {
+      toggle();
+      setRecipeMeasurements(measurements => {
+        measurements.forEach(ingredient => {
+          if(ingredient.name === ingredientType) {
+            ingredient.amount = convertedAmount;
+            ingredient.unit = newUnits;
+          }
+        })
+
+        return measurements;
+      })
     }
 
     // convert selected ingredients 
@@ -85,6 +95,8 @@ function Page(props) {
 
       ingredientAmountElement.textContent = `${convertedAmount} `;
       ingredientUnitElement.textContent = convertTo;
+
+      updateRecipeMeasurements(ingredientType, convertedAmount, convertTo);
     }
 
     // perform fetch call to spoonacular api to convert ingredient amounts
