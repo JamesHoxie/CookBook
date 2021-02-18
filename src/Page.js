@@ -21,7 +21,7 @@ const units = ["tsp", "tbsp", "cups", "L", "mL", "kg", "g", "mg", "oz", "lb"];
 
 function Page(props) {
     const {recipe, side = "left"} = props;
-    const setRecipeMeasurements = useState(recipe.ingredients)[1];
+    const [recipeMeasurements, setRecipeMeasurements] = useState(recipe.ingredients);
     const [isOpened, setIsOpened] = useState(false);
 
     // close and open conversion buttons below ingredients
@@ -31,15 +31,18 @@ function Page(props) {
 
     function updateRecipeMeasurements(ingredientType, convertedAmount, newUnits) {
       toggle();
-      setRecipeMeasurements(measurements => {
-        measurements.forEach(ingredient => {
+      setRecipeMeasurements(oldMeasurements => {
+        const newMeasurements = JSON.parse(JSON.stringify(oldMeasurements));
+
+        for(let ingredient of newMeasurements) {
           if(ingredient.name === ingredientType) {
             ingredient.amount = convertedAmount;
             ingredient.unit = newUnits;
+            break;
           }
-        })
+        }
 
-        return measurements;
+        return newMeasurements;
       })
     }
 
@@ -48,8 +51,6 @@ function Page(props) {
       
       let ingredientAmount = null;
       let ingredientType = null;
-      let ingredientAmountElement = null;
-      let ingredientUnitElement = null;
 
       // IMPORTANT NOTE:
       // this line will not work if the ingredient li structure is modified
@@ -60,8 +61,7 @@ function Page(props) {
 
       liElement.childNodes.forEach(element => {
         if(element.className === 'ingredient-amount') {
-          ingredientAmountElement = element; // store ref to update amount after conversion
-          let ingredientAmountParts = ingredientAmountElement.textContent.split('/'); // some amounts are in fractions, split and divide to get number
+          let ingredientAmountParts = element.textContent.split('/'); // some amounts are in fractions, split and divide to get number
 
           if(ingredientAmountParts.length === 2) {
             ingredientAmount = parseInt(ingredientAmountParts[0]) / parseInt(ingredientAmountParts[1]);
@@ -69,12 +69,8 @@ function Page(props) {
             ingredientAmount = parseInt(element.textContent);
           }
           
-        } else if(element.className === 'ingredient-unit') {
-          ingredientUnitElement = element;
         }
       });
-      
-      console.log(ingredientAmount);
 
       // IMPORTANT NOTE:
       // this line will also not work if the ingredient li structure is modified
@@ -87,14 +83,10 @@ function Page(props) {
       const selectTo = divElement.lastChild;
       const convertTo = selectTo.options[selectTo.selectedIndex].text;
         
-      console.log(convertFrom,convertTo);
-      console.log(ingredientType);
+      console.log(ingredientType, ingredientAmount, convertFrom, convertTo);
 
       //api fetch call to spoonacular to convert amounts
       const convertedAmount = await callSpoonacular(ingredientType, ingredientAmount, convertFrom, convertTo);
-
-      ingredientAmountElement.textContent = `${convertedAmount} `;
-      ingredientUnitElement.textContent = convertTo;
 
       updateRecipeMeasurements(ingredientType, convertedAmount, convertTo);
     }
@@ -136,13 +128,9 @@ function Page(props) {
           <hr />
           <div className="ingredients">
             <ul>
-              {recipe.ingredients.map((ingredient, index) => {
+              {recipeMeasurements.map((ingredient, index) => {
                 return <li key={index.toString()} className="ingredient">
                           <strong>{ingredient.name}</strong>: <span className="ingredient-amount">{ingredient.amount + " "}</span>
-                        
-                          {/* {(!isOpened || (isOpened && (ingredient.unit === 'slices' || ingredient.unit === ''))) && 
-                            <span>{ingredient.unit}</span>
-                          } */}
 
                           <span className="ingredient-unit">{ingredient.unit}</span>
                           

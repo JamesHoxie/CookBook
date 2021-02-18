@@ -1,0 +1,4 @@
+need to re render page components with new state (recipes) when flipping page forward or backward
+
+currently, state is not being adjusted so recipes on page 1 and 2 remain as state for recipes on page 3 and 4,
+this causes the ui to not update conversion defaults correctly
