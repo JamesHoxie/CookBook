@@ -12,7 +12,7 @@ function Cookbook({recipes}) {
           let rightNew = leftNew + 1;
           
           return [leftNew, rightNew]; 
-        })
+        });
     }
 
     function flipPageForward() {
@@ -22,7 +22,7 @@ function Cookbook({recipes}) {
         let rightNew = leftNew + 1;
         
         return [leftNew, rightNew]; 
-      })
+      });
     }
     
     return (

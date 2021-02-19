@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Page.css';
 
 // import all images of recipes for Pages to use to display their respective recipes
@@ -23,6 +23,14 @@ function Page(props) {
     const {recipe, side = "left"} = props;
     const [recipeMeasurements, setRecipeMeasurements] = useState(recipe.ingredients);
     const [isOpened, setIsOpened] = useState(false);
+
+    useEffect(() => {
+      // this runs everytime the recipe prop changes (second arg to the useEffect hook), we call setRecipeMeasurements to change the state
+      // we only maintain state based on measurements, since conversions cannot change the name or image of a recipe
+      // so we need to update internal page state to now reflect new measurements from the new recipe prop being passed on page flip
+      // NOTE: this means that conversions done on a page are lost upon page flips, this is going to be intended behavior for now
+      setRecipeMeasurements(oldMeasurements => recipe.ingredients);
+    }, [recipe]);
 
     // close and open conversion buttons below ingredients
     function toggle() {
