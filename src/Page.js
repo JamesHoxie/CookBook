@@ -37,10 +37,11 @@ function Page(props) {
       setIsOpened(wasOpened => !wasOpened);
     }
 
+    // change recipe measurements state when doing conversions
     function updateRecipeMeasurements(ingredientType, convertedAmount, newUnits) {
       toggle();
       setRecipeMeasurements(oldMeasurements => {
-        const newMeasurements = JSON.parse(JSON.stringify(oldMeasurements));
+        const newMeasurements = JSON.parse(JSON.stringify(oldMeasurements)); // create deep copy of old measurements object
 
         for(let ingredient of newMeasurements) {
           if(ingredient.name === ingredientType) {
@@ -51,12 +52,11 @@ function Page(props) {
         }
 
         return newMeasurements;
-      })
+      });
     }
 
     // convert selected ingredients 
     const convert = async (event) => {
-      
       let ingredientAmount = null;
       let ingredientType = null;
 

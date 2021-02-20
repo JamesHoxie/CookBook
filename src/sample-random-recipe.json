@@ -1,0 +1,517 @@
+{
+    "recipes": [
+        {
+            "vegetarian": true,
+            "vegan": false,
+            "glutenFree": false,
+            "dairyFree": false,
+            "veryHealthy": false,
+            "cheap": false,
+            "veryPopular": false,
+            "sustainable": false,
+            "weightWatcherSmartPoints": 12,
+            "gaps": "no",
+            "lowFodmap": false,
+            "aggregateLikes": 37,
+            "spoonacularScore": 30.0,
+            "healthScore": 2.0,
+            "creditsText": "Foodista.com – The Cooking Encyclopedia Everyone Can Edit",
+            "license": "CC BY 3.0",
+            "sourceName": "Foodista",
+            "pricePerServing": 24.23,
+            "extendedIngredients": [
+                {
+                    "id": 20081,
+                    "aisle": "Baking",
+                    "image": "flour.png",
+                    "consistency": "solid",
+                    "name": "flour",
+                    "nameClean": "wheat flour",
+                    "original": "4 cups all-purpose flour",
+                    "originalString": "4 cups all-purpose flour",
+                    "originalName": "all-purpose flour",
+                    "amount": 4.0,
+                    "unit": "cups",
+                    "meta": [
+                        "all-purpose"
+                    ],
+                    "metaInformation": [
+                        "all-purpose"
+                    ],
+                    "measures": {
+                        "us": {
+                            "amount": 4.0,
+                            "unitShort": "cups",
+                            "unitLong": "cups"
+                        },
+                        "metric": {
+                            "amount": 946.352,
+                            "unitShort": "ml",
+                            "unitLong": "milliliters"
+                        }
+                    }
+                },
+                {
+                    "id": 19335,
+                    "aisle": "Baking",
+                    "image": "sugar-in-bowl.png",
+                    "consistency": "solid",
+                    "name": "granulated sugar",
+                    "nameClean": "sugar",
+                    "original": "2 cups granulated sugar (divided)",
+                    "originalString": "2 cups granulated sugar (divided)",
+                    "originalName": "granulated sugar (divided)",
+                    "amount": 2.0,
+                    "unit": "cups",
+                    "meta": [
+                        "divided",
+                        "()"
+                    ],
+                    "metaInformation": [
+                        "divided",
+                        "()"
+                    ],
+                    "measures": {
+                        "us": {
+                            "amount": 2.0,
+                            "unitShort": "cups",
+                            "unitLong": "cups"
+                        },
+                        "metric": {
+                            "amount": 473.176,
+                            "unitShort": "ml",
+                            "unitLong": "milliliters"
+                        }
+                    }
+                },
+                {
+                    "id": 14214,
+                    "aisle": "Tea and Coffee",
+                    "image": "instant-coffee-or-instant-espresso.png",
+                    "consistency": "solid",
+                    "name": "instant coffee granules",
+                    "nameClean": "instant coffee",
+                    "original": "3 teaspoons instant coffee granules",
+                    "originalString": "3 teaspoons instant coffee granules",
+                    "originalName": "instant coffee granules",
+                    "amount": 3.0,
+                    "unit": "teaspoons",
+                    "meta": [],
+                    "metaInformation": [],
+                    "measures": {
+                        "us": {
+                            "amount": 3.0,
+                            "unitShort": "tsps",
+                            "unitLong": "teaspoons"
+                        },
+                        "metric": {
+                            "amount": 3.0,
+                            "unitShort": "tsps",
+                            "unitLong": "teaspoons"
+                        }
+                    }
+                },
+                {
+                    "id": 19165,
+                    "aisle": "Baking",
+                    "image": "cocoa-powder.png",
+                    "consistency": "solid",
+                    "name": "cocoa",
+                    "nameClean": "cocoa powder",
+                    "original": "1 tablespoon cocoa",
+                    "originalString": "1 tablespoon cocoa",
+                    "originalName": "cocoa",
+                    "amount": 1.0,
+                    "unit": "tablespoon",
+                    "meta": [],
+                    "metaInformation": [],
+                    "measures": {
+                        "us": {
+                            "amount": 1.0,
+                            "unitShort": "Tbsp",
+                            "unitLong": "Tbsp"
+                        },
+                        "metric": {
+                            "amount": 1.0,
+                            "unitShort": "Tbsp",
+                            "unitLong": "Tbsp"
+                        }
+                    }
+                },
+                {
+                    "id": 18372,
+                    "aisle": "Baking",
+                    "image": "white-powder.jpg",
+                    "consistency": "solid",
+                    "name": "baking soda",
+                    "nameClean": "baking soda",
+                    "original": "2 teaspoons baking soda",
+                    "originalString": "2 teaspoons baking soda",
+                    "originalName": "baking soda",
+                    "amount": 2.0,
+                    "unit": "teaspoons",
+                    "meta": [],
+                    "metaInformation": [],
+                    "measures": {
+                        "us": {
+                            "amount": 2.0,
+                            "unitShort": "tsps",
+                            "unitLong": "teaspoons"
+                        },
+                        "metric": {
+                            "amount": 2.0,
+                            "unitShort": "tsps",
+                            "unitLong": "teaspoons"
+                        }
+                    }
+                },
+                {
+                    "id": 2047,
+                    "aisle": "Spices and Seasonings",
+                    "image": "salt.jpg",
+                    "consistency": "solid",
+                    "name": "salt",
+                    "nameClean": "salt",
+                    "original": "1 teaspoon salt",
+                    "originalString": "1 teaspoon salt",
+                    "originalName": "salt",
+                    "amount": 1.0,
+                    "unit": "teaspoon",
+                    "meta": [],
+                    "metaInformation": [],
+                    "measures": {
+                        "us": {
+                            "amount": 1.0,
+                            "unitShort": "tsp",
+                            "unitLong": "teaspoon"
+                        },
+                        "metric": {
+                            "amount": 1.0,
+                            "unitShort": "tsp",
+                            "unitLong": "teaspoon"
+                        }
+                    }
+                },
+                {
+                    "id": 1123,
+                    "aisle": "Milk, Eggs, Other Dairy",
+                    "image": "egg.png",
+                    "consistency": "solid",
+                    "name": "eggs",
+                    "nameClean": "egg",
+                    "original": "2 eggs",
+                    "originalString": "2 eggs",
+                    "originalName": "eggs",
+                    "amount": 2.0,
+                    "unit": "",
+                    "meta": [],
+                    "metaInformation": [],
+                    "measures": {
+                        "us": {
+                            "amount": 2.0,
+                            "unitShort": "",
+                            "unitLong": ""
+                        },
+                        "metric": {
+                            "amount": 2.0,
+                            "unitShort": "",
+                            "unitLong": ""
+                        }
+                    }
+                },
+                {
+                    "id": 1230,
+                    "aisle": "Milk, Eggs, Other Dairy",
+                    "image": "buttermilk.jpg",
+                    "consistency": "solid",
+                    "name": "buttermilk",
+                    "nameClean": "buttermilk",
+                    "original": "2 cups buttermilk",
+                    "originalString": "2 cups buttermilk",
+                    "originalName": "buttermilk",
+                    "amount": 2.0,
+                    "unit": "cups",
+                    "meta": [],
+                    "metaInformation": [],
+                    "measures": {
+                        "us": {
+                            "amount": 2.0,
+                            "unitShort": "cups",
+                            "unitLong": "cups"
+                        },
+                        "metric": {
+                            "amount": 473.176,
+                            "unitShort": "ml",
+                            "unitLong": "milliliters"
+                        }
+                    }
+                },
+                {
+                    "id": 4582,
+                    "aisle": "Oil, Vinegar, Salad Dressing",
+                    "image": "vegetable-oil.jpg",
+                    "consistency": "liquid",
+                    "name": "canola oil",
+                    "nameClean": "cooking oil",
+                    "original": "1/2 cup canola oil",
+                    "originalString": "1/2 cup canola oil",
+                    "originalName": "canola oil",
+                    "amount": 0.5,
+                    "unit": "cup",
+                    "meta": [],
+                    "metaInformation": [],
+                    "measures": {
+                        "us": {
+                            "amount": 0.5,
+                            "unitShort": "cups",
+                            "unitLong": "cups"
+                        },
+                        "metric": {
+                            "amount": 118.294,
+                            "unitShort": "ml",
+                            "unitLong": "milliliters"
+                        }
+                    }
+                },
+                {
+                    "id": 1012010,
+                    "aisle": "Spices and Seasonings",
+                    "image": "cinnamon.jpg",
+                    "consistency": "solid",
+                    "name": "ground cinnamon",
+                    "nameClean": "ground cinnamon",
+                    "original": "3 teaspoons ground cinnamon",
+                    "originalString": "3 teaspoons ground cinnamon",
+                    "originalName": "ground cinnamon",
+                    "amount": 3.0,
+                    "unit": "teaspoons",
+                    "meta": [],
+                    "metaInformation": [],
+                    "measures": {
+                        "us": {
+                            "amount": 3.0,
+                            "unitShort": "tsps",
+                            "unitLong": "teaspoons"
+                        },
+                        "metric": {
+                            "amount": 3.0,
+                            "unitShort": "tsps",
+                            "unitLong": "teaspoons"
+                        }
+                    }
+                },
+                {
+                    "id": 9299,
+                    "aisle": "Dried Fruits;Produce;Baking",
+                    "image": "raisins.jpg",
+                    "consistency": "solid",
+                    "name": "raisins",
+                    "nameClean": "raisins",
+                    "original": "Optional: 1/2 cup raisins",
+                    "originalString": "Optional: 1/2 cup raisins",
+                    "originalName": "Optional: raisins",
+                    "amount": 0.5,
+                    "unit": "cup",
+                    "meta": [],
+                    "metaInformation": [],
+                    "measures": {
+                        "us": {
+                            "amount": 0.5,
+                            "unitShort": "cups",
+                            "unitLong": "cups"
+                        },
+                        "metric": {
+                            "amount": 118.294,
+                            "unitShort": "ml",
+                            "unitLong": "milliliters"
+                        }
+                    }
+                }
+            ],
+            "id": 639465,
+            "title": "Cinnamon Mocha Quick Bread",
+            "readyInMinutes": 45,
+            "servings": 16,
+            "sourceUrl": "https://www.foodista.com/recipe/YVJD7FQ4/cinnamon-mocha-quick-bread",
+            "image": "https://spoonacular.com/recipeImages/639465-556x370.jpg",
+            "imageType": "jpg",
+            "summary": "Cinnamon Mocha Quick Bread might be just the breakfast you are searching for. One serving contains <b>315 calories</b>, <b>5g of protein</b>, and <b>9g of fat</b>. For <b>24 cents per serving</b>, this recipe <b>covers 7%</b> of your daily requirements of vitamins and minerals. This recipe serves 16. If you have buttermilk, eggs, ground cinnamon, and a few other ingredients on hand, you can make it. This recipe from Foodista has 37 fans. From preparation to the plate, this recipe takes approximately <b>approximately 45 minutes</b>. It is a good option if you're following a <b>lacto ovo vegetarian</b> diet. With a spoonacular <b>score of 27%</b>, this dish is rather bad. If you like this recipe, take a look at these similar recipes: <a href=\"https://spoonacular.com/recipes/cinnamon-swirl-quick-bread-405233\">Cinnamon Swirl Quick Bread</a>, <a href=\"https://spoonacular.com/recipes/apple-cinnamon-quick-bread-206136\">Apple Cinnamon Quick Bread</a>, and <a href=\"https://spoonacular.com/recipes/cinnamon-raisin-quick-bread-403545\">Cinnamon Raisin Quick Bread</a>.",
+            "cuisines": [],
+            "dishTypes": [
+                "dessert",
+                "morning meal",
+                "brunch",
+                "breakfast"
+            ],
+            "diets": [
+                "lacto ovo vegetarian"
+            ],
+            "occasions": [],
+            "instructions": "1.  In a bowl, combine the flour, 1 1/2 cups sugar, coffee granules, cocoa, baking soda, and salt. In a small bowl, whisk the eggs, buttermilk and oil. Stir into the dry ingredients just until moistened. (Optional -- fold in raisins)\n2.  Transfer a fourth of the batter into each of two greased 8\"x4\" loaf pans. Combine cinnamon and remaining sugar; sprinkle half over batter in each loaf pan. Repeat layers.\n3.  Cut through batter with a knife to swirl.\n4.   Bake at 350 degrees for 55 to 60 minutes or until a toothpick inserted near the center comes out clean. Cool in pans for 10 minutes; remove from pans to wire racks to cool completely.",
+            "analyzedInstructions": [
+                {
+                    "name": "",
+                    "steps": [
+                        {
+                            "number": 1,
+                            "step": "In a bowl, combine the flour, 1 1/2 cups sugar, coffee granules, cocoa, baking soda, and salt. In a small bowl, whisk the eggs, buttermilk and oil. Stir into the dry ingredients just until moistened. (Optional -- fold in raisins)",
+                            "ingredients": [
+                                {
+                                    "id": 14214,
+                                    "name": "instant coffee",
+                                    "localizedName": "instant coffee",
+                                    "image": "instant-coffee-or-instant-espresso.png"
+                                },
+                                {
+                                    "id": 18372,
+                                    "name": "baking soda",
+                                    "localizedName": "baking soda",
+                                    "image": "white-powder.jpg"
+                                },
+                                {
+                                    "id": 1230,
+                                    "name": "buttermilk",
+                                    "localizedName": "buttermilk",
+                                    "image": "buttermilk.jpg"
+                                },
+                                {
+                                    "id": 9299,
+                                    "name": "raisins",
+                                    "localizedName": "raisins",
+                                    "image": "raisins.jpg"
+                                },
+                                {
+                                    "id": 19165,
+                                    "name": "cocoa powder",
+                                    "localizedName": "cocoa powder",
+                                    "image": "cocoa-powder.png"
+                                },
+                                {
+                                    "id": 20081,
+                                    "name": "all purpose flour",
+                                    "localizedName": "all purpose flour",
+                                    "image": "flour.png"
+                                },
+                                {
+                                    "id": 19335,
+                                    "name": "sugar",
+                                    "localizedName": "sugar",
+                                    "image": "sugar-in-bowl.png"
+                                },
+                                {
+                                    "id": 1123,
+                                    "name": "egg",
+                                    "localizedName": "egg",
+                                    "image": "egg.png"
+                                },
+                                {
+                                    "id": 2047,
+                                    "name": "salt",
+                                    "localizedName": "salt",
+                                    "image": "salt.jpg"
+                                },
+                                {
+                                    "id": 4582,
+                                    "name": "cooking oil",
+                                    "localizedName": "cooking oil",
+                                    "image": "vegetable-oil.jpg"
+                                }
+                            ],
+                            "equipment": [
+                                {
+                                    "id": 404661,
+                                    "name": "whisk",
+                                    "localizedName": "whisk",
+                                    "image": "whisk.png"
+                                },
+                                {
+                                    "id": 404783,
+                                    "name": "bowl",
+                                    "localizedName": "bowl",
+                                    "image": "bowl.jpg"
+                                }
+                            ]
+                        },
+                        {
+                            "number": 2,
+                            "step": "Transfer a fourth of the batter into each of two greased 8\"x4\" loaf pans.",
+                            "ingredients": [],
+                            "equipment": [
+                                {
+                                    "id": 404715,
+                                    "name": "loaf pan",
+                                    "localizedName": "loaf pan",
+                                    "image": "loaf-pan.png"
+                                }
+                            ]
+                        },
+                        {
+                            "number": 3,
+                            "step": "Combine cinnamon and remaining sugar; sprinkle half over batter in each loaf pan. Repeat layers.",
+                            "ingredients": [
+                                {
+                                    "id": 2010,
+                                    "name": "cinnamon",
+                                    "localizedName": "cinnamon",
+                                    "image": "cinnamon.jpg"
+                                },
+                                {
+                                    "id": 19335,
+                                    "name": "sugar",
+                                    "localizedName": "sugar",
+                                    "image": "sugar-in-bowl.png"
+                                }
+                            ],
+                            "equipment": [
+                                {
+                                    "id": 404715,
+                                    "name": "loaf pan",
+                                    "localizedName": "loaf pan",
+                                    "image": "loaf-pan.png"
+                                }
+                            ]
+                        },
+                        {
+                            "number": 4,
+                            "step": "Cut through batter with a knife to swirl.",
+                            "ingredients": [],
+                            "equipment": [
+                                {
+                                    "id": 404745,
+                                    "name": "knife",
+                                    "localizedName": "knife",
+                                    "image": "chefs-knife.jpg"
+                                }
+                            ]
+                        },
+                        {
+                            "number": 5,
+                            "step": "Bake at 350 degrees for 55 to 60 minutes or until a toothpick inserted near the center comes out clean. Cool in pans for 10 minutes; remove from pans to wire racks to cool completely.",
+                            "ingredients": [],
+                            "equipment": [
+                                {
+                                    "id": 404644,
+                                    "name": "toothpicks",
+                                    "localizedName": "toothpicks",
+                                    "image": "toothpicks.jpg"
+                                },
+                                {
+                                    "id": 404784,
+                                    "name": "oven",
+                                    "localizedName": "oven",
+                                    "image": "oven.jpg"
+                                }
+                            ],
+                            "length": {
+                                "number": 65,
+                                "unit": "minutes"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "originalId": null,
+            "spoonacularSourceUrl": "https://spoonacular.com/cinnamon-mocha-quick-bread-639465"
+        }
+    ]
+}

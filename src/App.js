@@ -2,28 +2,21 @@ import React from "react";
 import Cookbook from './Cookbook';
 
 function App() {
-  // add this after import React: { useState, useEffect, componentWillMount } for the below code to work
-  //const [renderedResponse, setRenderedResponse] = useState('');
+  function addRecipe() {
+      recipes.push(
+        {
+          name: "new recipe",
+          description: "this is a new recipe", 
+          image: "peanut-butter-and-jelly.jpeg",
+          ingredients: 
+          [
+            {name: "ingredient1", amount: "0", unit: "tbsp"},
+            {name: "ingredient2", amount: "0", unit: "tbsp"}, 
+            {name: "cooking oil", amount: "1", unit: "tbsp"}
+          ]
+        });
+    }
 
-  // TODO: may use this to make api calls to spoonacular for recipe conversions and other stuff
-  // async function getResponse() {
-  //   const response = await fetch('/api/hello');
-  //   const body = await response.json();
-
-  //   if (response.status !== 200) throw Error(body.message);
-
-  //   return body;
-  // }
-
-  // useEffect(() => {
-  //   getResponse()
-  //     .then(res => {
-  //       const someData = res;
-  //       setRenderedResponse(someData.express);
-  //     });
-  // }, []);
-
-  // const recipes = ["Peanut Butter and Jelly Sandwich", "Grilled Cheese", "Spaghetti & Meatballs", "Crepes"];
   const recipes = [
                   {name: "Peanut Butter and Jelly Sandwich",
                    description: "2 slices of white bread with a delicious blend of peanut butter and jelly filling", 
@@ -79,7 +72,7 @@ function App() {
 
   return (
     <div>
-      <Cookbook recipes={recipes}/>
+      <Cookbook recipes={recipes} addRecipe={addRecipe}/>
     </div>
   );
 }
