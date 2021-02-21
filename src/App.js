@@ -2,6 +2,33 @@ import React from "react";
 import Cookbook from './Cookbook';
 
 function App() {
+  // set of all ingredient amounts for displaying in conversion selection drop down and their alternative abreviations
+  const units = {"tsp": ["teaspoon", "teaspoons", "t", "ts", "tspn"],
+                 "tbsp": ["tablespoon", "tablespoons", "t", "tb", "tbl", "tbs", "tbsp"],
+                 "cups": ["cup", "c"],
+                 "L": ["liter", "liters", "l"],
+                 "mL": ["milliliter", "milliliters", "ml"],
+                 "kg": ["kilogram", "kilograms"],
+                 "g": ["gram", "grams"],
+                 "oz": ["ounce", "ounces"],
+                 "lb": ["pound", "pounds"],
+                 "pt": ["pint", "pints"]
+  }
+  
+
+  // convert other spellings/abreviations of units to type recognized for display
+  function processUnit(unitToProcess) {
+    unitToProcess = unitToProcess.toLowerCase();
+
+    for(let unit in units) {
+      if(units[unit].includes(unitToProcess)) {
+        return unit; // return abreviation used by this program
+      }
+    }
+
+    return unitToProcess; // return original unit to be processed, unit is atypical and cannot be converted by this program
+  }
+
   // extract ingredients from individual recipe data object ingredients list
   function processIngredients(recipeDataObjectIngredientsList) {
     return recipeDataObjectIngredientsList.map(ingredientDataObject => {
@@ -9,7 +36,7 @@ function App() {
 
       ingredient.name = ingredientDataObject.originalName;
       ingredient.amount = ingredientDataObject.amount;
-      ingredient.unit = ingredientDataObject.unit;
+      ingredient.unit = processUnit(ingredientDataObject.unit);
 
       return ingredient;
     });
@@ -117,7 +144,7 @@ function App() {
 
   return (
     <div>
-      <Cookbook recipes={recipes} addRecipes={addRecipes}/>
+      <Cookbook recipes={recipes} addRecipes={addRecipes} units={Object.keys(units)}/>
     </div>
   );
 }

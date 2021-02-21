@@ -6,6 +6,7 @@ function Cookbook(props) {
   const recipes = props.recipes;
   const addRecipes = props.addRecipes;
   const [visibleRecipes, setVisibleRecipes] = useState([0, 1]);  
+  const units = props.units;
 
     function flipPageBackward() {
         setVisibleRecipes((prevVisibleRecipes) => {
@@ -35,8 +36,8 @@ function Cookbook(props) {
           
           <div className="cookbook-pages">
     <button className="flip-backward-button" onClick={flipPageBackward}>{"<-"}</button>
-            <Page recipe={recipes[visibleRecipes[0]]}/>
-            <Page recipe={recipes[visibleRecipes[1]]} side="right"/>
+            <Page recipe={recipes[visibleRecipes[0]]} units={units}/>
+            <Page recipe={recipes[visibleRecipes[1]]} side="right" units={units}/>
             <button className="flip-forward-button" onClick={flipPageForward}>{"->"}</button>
           </div>
         </div>

@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './Page.css';
-import Fraction from 'fraction.js';
-
-// convert input to string representation fraction
-function convertToFract(input) {
-  let f = new Fraction(input);
-  let output = f.toFraction(true);
-
-  return output;
-}
 
 // import all images of recipes for Pages to use to display their respective recipes
 // format for saved images atm must be .jpg and must use kebab case
@@ -25,11 +16,8 @@ function importAll(r) {
 
 const images = importAll(require.context('./recipe-images', false, /\.(png|jpe?g|svg)$/));
 
-// set of all ingredient amounts for displaying in conversion selection drop down
-const units = ["tsp", "tbsp", "cups", "L", "mL", "kg", "g", "mg", "oz", "lb"];
-
 function Page(props) {
-    const {recipe, side = "left"} = props;
+    const {recipe, side = "left", units} = props;
     const [recipeMeasurements, setRecipeMeasurements] = useState(recipe.ingredients);
     const [isOpened, setIsOpened] = useState(false);
 
@@ -152,7 +140,7 @@ function Page(props) {
 
                           <span className="ingredient-unit">{ingredient.unit}</span>
                           
-                          {isOpened && ingredient.unit !== 'slices' && ingredient.unit !== '' &&
+                          {isOpened && units.includes(ingredient.unit) &&
                             <div>
                               <select className="convert-from-options" defaultValue={ingredient.unit}>
                                 {ingredient.unit !== 'slices' && ingredient.unit !== '' && 
