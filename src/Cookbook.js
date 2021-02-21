@@ -4,7 +4,7 @@ import Page from './Page';
 
 function Cookbook(props) {
   const recipes = props.recipes;
-  const addRecipe = props.addRecipe;
+  const addRecipes = props.addRecipes;
   const [visibleRecipes, setVisibleRecipes] = useState([0, 1]);  
 
     function flipPageBackward() {
@@ -17,24 +17,13 @@ function Cookbook(props) {
         });
     }
 
-    // function flipPageForward() {
-    //   setVisibleRecipes((prevVisibleRecipes) => {
-    //     let leftPrev = prevVisibleRecipes[0];
-    //     let leftNew = (leftPrev + 2) >= recipes.length ? leftPrev : leftPrev + 2;
-    //     let rightNew = leftNew + 1;
-        
-    //     return [leftNew, rightNew]; 
-    //   });
-    // }
-
-    function flipPageForward() {
-      addRecipe();
-      addRecipe(); 
-
+    function flipPageForward() { 
       setVisibleRecipes((prevVisibleRecipes) => {
         let leftPrev = prevVisibleRecipes[0];
         let leftNew = leftPrev + 2;
         let rightNew = leftNew + 1;
+
+        if(rightNew+1 === recipes.length) addRecipes(); // get 2 random recipes from spoonacular for new pages if going over current length
 
         return [leftNew, rightNew];
       });

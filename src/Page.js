@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './Page.css';
+import Fraction from 'fraction.js';
+
+// convert input to string representation fraction
+function convertToFract(input) {
+  let f = new Fraction(input);
+  let output = f.toFraction(true);
+
+  return output;
+}
 
 // import all images of recipes for Pages to use to display their respective recipes
 // format for saved images atm must be .jpg and must use kebab case
@@ -132,7 +141,8 @@ function Page(props) {
           <h3>{recipe.name}</h3>
           <p>{recipe.description}</p>
           <hr />
-          <img src={images[`${recipe.name.toLowerCase().replaceAll(' ', '-')}.jpg`]} alt={`${recipe.name}`} />
+          {/* <img src={images[`${recipe.name.toLowerCase().replaceAll(' ', '-')}.jpg`]} alt={`${recipe.name}`} /> */}
+          <img src={recipe.image} alt={`${recipe.name}`} />
           <hr />
           <div className="ingredients">
             <ul>

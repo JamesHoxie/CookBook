@@ -1,4 +1,6 @@
-need to re render page components with new state (recipes) when flipping page forward or backward
+need to disable page flip until results for next page have been fetched OR need to display some sort of loading display on page
+until that page's new recipes are loaded from api
 
-currently, state is not being adjusted so recipes on page 1 and 2 remain as state for recipes on page 3 and 4,
-this causes the ui to not update conversion defaults correctly
+need to convert recipe amounts into fractions for display
+
+need to adjust units being displayed from api calls
