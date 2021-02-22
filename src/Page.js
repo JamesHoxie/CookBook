@@ -14,6 +14,48 @@ function Page(props) {
       setRecipeMeasurements(oldMeasurements => recipe.ingredients);
     }, [recipe]);
 
+    // function to convert a decimal to a fraction
+    // original snippet from: https://danielbachhuber.com/2019/02/04/javascript-number-fraction/
+    // modifications made to convert thirds
+    const numberToFraction = function( amount ) {
+      // This is a whole number and doesn't need modification.
+      if ( parseFloat( amount ) === parseInt( amount ) ) {
+        return amount;
+      }
+
+      // check if amount is 1/3 or 2/3, out of bounds array checks return undefined
+      const amountStr = amount.toString();  
+      if(amountStr[0] === '0' && amountStr[1] === '.') {
+        if((amountStr[2] === '3' && amountStr[3] === '3')) {
+          return '1/3';
+        } else if((amountStr[2] === '6' && amountStr[3] === '6')) {
+          return '2/3';
+        }
+      }
+
+      // Next 12 lines are cribbed from https://stackoverflow.com/a/23575406.
+      var gcd = function(a, b) {
+        if (b < 0.0000001) {
+          return a;
+        }
+        return gcd(b, Math.floor(a % b));
+      };
+      var len = amount.toString().length - 2;
+      var denominator = Math.pow(10, len);
+      var numerator = amount * denominator;
+      var divisor = gcd(numerator, denominator);
+      numerator /= divisor;
+      denominator /= divisor;
+      var base = 0;
+      amount = Math.floor(numerator) + '/' + Math.floor(denominator);
+      
+      if ( base ) {
+        amount = base + ' ' + amount;
+      }
+
+      return amount;
+    };
+
     // close and open conversion buttons below ingredients
     function toggle() {
       setIsOpened(wasOpened => !wasOpened);
@@ -121,7 +163,7 @@ function Page(props) {
             <ul>
               {recipeMeasurements.map((ingredient, index) => {
                 return <li key={index.toString()} className="ingredient">
-                          <strong>{ingredient.name}</strong>: <span className="ingredient-amount">{ingredient.amount + " "}</span>
+                          <strong>{ingredient.name}</strong>: <span className="ingredient-amount">{numberToFraction(ingredient.amount) + ' '}</span>
 
                           <span className="ingredient-unit">{ingredient.unit}</span>
                           
