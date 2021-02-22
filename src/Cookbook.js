@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import './CookBook.css';
 import Page from './Page';
 
 function Cookbook(props) {
   const recipes = props.recipes;
   const addRecipes = props.addRecipes;
-  const [visibleRecipes, setVisibleRecipes] = useState([0, 1]);  
   const units = props.units;
+  const [visibleRecipes, setVisibleRecipes] = useState([0, 1]);  
 
     function flipPageBackward() {
         setVisibleRecipes((prevVisibleRecipes) => {
@@ -24,7 +24,7 @@ function Cookbook(props) {
         let leftNew = leftPrev + 2;
         let rightNew = leftNew + 1;
 
-        if(rightNew+1 === recipes.length) addRecipes(); // get 2 random recipes from spoonacular for new pages if going over current length
+        if(leftNew >= recipes.length) addRecipes(); // get 2 random recipes from spoonacular for new pages if going over current length
 
         return [leftNew, rightNew];
       });
@@ -34,12 +34,22 @@ function Cookbook(props) {
         <div className="cookbook">
           <h2>Panda's Cookbook</h2>
           
-          <div className="cookbook-pages">
-    <button className="flip-backward-button" onClick={flipPageBackward}>{"<-"}</button>
-            <Page recipe={recipes[visibleRecipes[0]]} units={units}/>
-            <Page recipe={recipes[visibleRecipes[1]]} side="right" units={units}/>
-            <button className="flip-forward-button" onClick={flipPageForward}>{"->"}</button>
-          </div>
+          {visibleRecipes[1] > recipes.length && 
+            <div className="cookbook-pages">
+              <button className="flip-backward-button" onClick={flipPageBackward}>{"<-"}</button>
+              <p>Loading recipes... </p>
+              <button className="flip-forward-button" onClick={flipPageForward}>{"->"}</button>
+            </div>
+          }
+
+          {visibleRecipes[1] <= recipes.length && 
+            <div className="cookbook-pages">
+              <button className="flip-backward-button" onClick={flipPageBackward}>{"<-"}</button>
+              <Page recipe={recipes[visibleRecipes[0]]} units={units} pageNumber={visibleRecipes[0]}/>
+              <Page recipe={recipes[visibleRecipes[1]]} side="right" units={units} pageNumber={visibleRecipes[1]}/>
+              <button className="flip-forward-button" onClick={flipPageForward}>{"->"}</button>
+            </div>
+          }
         </div>
       );
 }

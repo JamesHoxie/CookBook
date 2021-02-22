@@ -1,6 +1,9 @@
-need to disable page flip until results for next page have been fetched OR need to display some sort of loading display on page
-until that page's new recipes are loaded from api
-
 need to convert recipe amounts into fractions for display
 
-need to adjust units being displayed from api calls
+adjust loading display (low priority)
+
+page flip on screen drag left to right / css page flip animation
+
+general visual enchancements
+
+display steps to recipes in pages

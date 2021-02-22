@@ -1,23 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Page.css';
 
-// import all images of recipes for Pages to use to display their respective recipes
-// format for saved images atm must be .jpg and must use kebab case
-// recipe names should be saved with normal spaces between words, all spaces will be converted to dashes
-// when getting the image to display for the recipe
-function importAll(r) {
-  let images = {};
-  r.keys().forEach(item => {
-    images[item.replace('./', '')] = r(item);
-  });
-  
-  return images;
-}
-
-const images = importAll(require.context('./recipe-images', false, /\.(png|jpe?g|svg)$/));
-
 function Page(props) {
-    const {recipe, side = "left", units} = props;
+    const {recipe, side = "left", units, pageNumber} = props;
     const [recipeMeasurements, setRecipeMeasurements] = useState(recipe.ingredients);
     const [isOpened, setIsOpened] = useState(false);
 
@@ -126,10 +111,10 @@ function Page(props) {
     
     return (
         <div className={`page ${side}`}>
+          <h5>{pageNumber}</h5>
           <h3>{recipe.name}</h3>
           <p>{recipe.description}</p>
           <hr />
-          {/* <img src={images[`${recipe.name.toLowerCase().replaceAll(' ', '-')}.jpg`]} alt={`${recipe.name}`} /> */}
           <img src={recipe.image} alt={`${recipe.name}`} />
           <hr />
           <div className="ingredients">
