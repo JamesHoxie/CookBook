@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Page.css';
 
 function Page(props) {
-    const {recipe, side = "left", units, pageNumber} = props;
+    const {recipe, side = "left", units, pageNumber, flipPage} = props;
     const [recipeMeasurements, setRecipeMeasurements] = useState(recipe.ingredients);
     const [isOpened, setIsOpened] = useState(false);
 
@@ -153,6 +153,7 @@ function Page(props) {
     
     return (
         <div className={`page ${side}`}>
+          <button className={`flip-button ${side}`} onClick={flipPage}>Flip page</button>
           <h5>{pageNumber}</h5>
           <h3>{recipe.name}</h3>
           <p>{recipe.description}</p>
@@ -189,8 +190,9 @@ function Page(props) {
                        </li>
               })}
             </ul>
-            <button className="convert-button" onClick={toggle}>Convert ingredient units</button>
-            
+            <div className="convert-button-container">
+              <button className="convert-button" onClick={toggle}>Convert ingredient units</button>  
+            </div>
           </div>
         </div>
       );

@@ -1,14 +1,48 @@
 .page {
     background-color: lightyellow;
     display: inline-block;
-    width : 45%;
-    max-width: 45%;
-    min-width: 45%;
-    height: 90%;
-    max-height: 90%;
-    min-height: 90%;
-    overflow-y:auto; /* add scroll bar to recipe page when ingredients won't fit on one page*/
+    width : 47%;
+    max-width: 47%;
+    min-width: 47%;
+    height: 100%;
+    /* overflow-y:auto; add scroll bar to recipe page when ingredients won't fit on one page */
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */ 
   }
+
+  .page.left {
+    box-shadow:
+    /* The top layer shadow */
+    0 1px 1px rgba(0,0,0,0.15),
+    /* The second layer */
+    -10px 0 0 -5px lightyellow,
+    /* The second layer shadow */
+    -10px 0 1px -4px rgba(0,0,0,0.15),
+    /* The third layer */
+    -20px 0 0 -10px lightyellow,
+    /* The third layer shadow */
+    -20px 0 1px -9px rgba(0,0,0,0.15);
+  }
+
+  .page.right {
+    box-shadow:
+    /* The top layer shadow */
+    0 1px 1px rgba(0,0,0,0.15),
+    /* The second layer */
+    10px 0 0 -5px lightyellow,
+    /* The second layer shadow */
+    10px 0 1px -4px rgba(0,0,0,0.15),
+    /* The third layer */
+    20px 0 0 -10px lightyellow,
+    /* The third layer shadow */
+    20px 0 1px -9px rgba(0,0,0,0.15);
+  }
+
+  .page::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
 
 .ingredients {
   text-align: left;
@@ -19,15 +53,31 @@ img {
   height: 60%;
 }
   
-.right {
+.page.right {
     border-left: solid black 0.25em;
-  }
+}
 
 .ingredient:hover {
   border: solid black 0.15em;
   border-radius: 5%;
 }
 
-/* button.convert-button {
-  margin-left: 14em;
-} */
+button {
+  background-color: lightyellow;
+}
+
+button:hover {
+  background-color: gold;
+}
+
+.flip-button.left {
+  float: left;
+}
+
+.flip-button.right {
+  float: right;
+}
+
+div.convert-button-container {
+  text-align: center;
+}

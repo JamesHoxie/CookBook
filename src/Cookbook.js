@@ -32,22 +32,17 @@ function Cookbook(props) {
     
     return (
         <div className="cookbook">
-          <h2>Panda's Cookbook</h2>
           
           {visibleRecipes[1] > recipes.length && 
             <div className="cookbook-pages">
-              <button className="flip-backward-button" onClick={flipPageBackward}>{"<-"}</button>
               <p>Loading recipes... </p>
-              <button className="flip-forward-button" onClick={flipPageForward}>{"->"}</button>
             </div>
           }
 
           {visibleRecipes[1] <= recipes.length && 
             <div className="cookbook-pages">
-              <button className="flip-backward-button" onClick={flipPageBackward}>{"<-"}</button>
-              <Page recipe={recipes[visibleRecipes[0]]} units={units} pageNumber={visibleRecipes[0]}/>
-              <Page recipe={recipes[visibleRecipes[1]]} side="right" units={units} pageNumber={visibleRecipes[1]}/>
-              <button className="flip-forward-button" onClick={flipPageForward}>{"->"}</button>
+              <Page recipe={recipes[visibleRecipes[0]]} units={units} pageNumber={visibleRecipes[0]} flipPage={flipPageBackward}/>
+              <Page recipe={recipes[visibleRecipes[1]]} side="right" units={units} pageNumber={visibleRecipes[1]} flipPage={flipPageForward}/>
             </div>
           }
         </div>
