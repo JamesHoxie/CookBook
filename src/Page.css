@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400&display=swap');
+
 .page {
     background-color: lightyellow;
     display: inline-block;
@@ -9,6 +11,8 @@
     overflow-y: scroll;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* Internet Explorer 10+ */ 
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 110%;
   }
 
   .page.left {
@@ -44,7 +48,7 @@
     height: 0;
 }
 
-.ingredients {
+.ingredients-list {
   text-align: left;
 }
 

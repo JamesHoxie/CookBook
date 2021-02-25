@@ -41,8 +41,8 @@ function Cookbook(props) {
 
           {visibleRecipes[1] <= recipes.length && 
             <div className="cookbook-pages">
-              <Page recipe={recipes[visibleRecipes[0]]} units={units} pageNumber={visibleRecipes[0]} flipPage={flipPageBackward}/>
-              <Page recipe={recipes[visibleRecipes[1]]} side="right" units={units} pageNumber={visibleRecipes[1]} flipPage={flipPageForward}/>
+              <Page recipe={recipes[visibleRecipes[0]]} units={units} pageNumber={visibleRecipes[0]+1} flipPage={flipPageBackward}/>
+              <Page recipe={recipes[visibleRecipes[1]]} side="right" units={units} pageNumber={visibleRecipes[1]+1} flipPage={flipPageForward}/>
             </div>
           }
         </div>

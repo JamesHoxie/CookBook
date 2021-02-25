@@ -161,38 +161,83 @@ function Page(props) {
           <img src={recipe.image} alt={`${recipe.name}`} />
           <hr />
           <div className="ingredients">
-            <ul>
-              {recipeMeasurements.map((ingredient, index) => {
-                return <li key={index.toString()} className="ingredient">
-                          <strong>{ingredient.name}</strong>: <span className="ingredient-amount">{numberToFraction(ingredient.amount) + ' '}</span>
+            <h4>Ingredients</h4>
+            <div className="ingredients-list">
+              <ul>
+                {recipeMeasurements.map((ingredient, index) => {
+                  return <li key={index.toString()} className="ingredient">
+                            <strong>{ingredient.name}</strong>: <span className="ingredient-amount">{numberToFraction(ingredient.amount) + ' '}</span>
 
-                          <span className="ingredient-unit">{ingredient.unit}</span>
-                          
-                          {isOpened && units.includes(ingredient.unit) &&
-                            <div>
-                              <select className="convert-from-options" defaultValue={ingredient.unit}>
-                                {ingredient.unit !== 'slices' && ingredient.unit !== '' && 
-                                  units.map((unit, index) => {
-                                    return <option key={index.toString()} value={unit}>{`${unit}`}</option>      
-                              })}
-                              </select>
-                              
-                              <button className="convert-button" onClick={convert}>Convert to</button>
-                              
-                              <select className="convert-to-options">
-                                {ingredient.unit !== 'slices' && ingredient.unit !== '' && 
-                                  units.map((unit, index) => {
-                                    return <option key={index.toString()}>{`${unit}`}</option>   
+                            <span className="ingredient-unit">{ingredient.unit}</span>
+                            
+                            {isOpened && units.includes(ingredient.unit) &&
+                              <div>
+                                <select className="convert-from-options" defaultValue={ingredient.unit}>
+                                  {ingredient.unit !== 'slices' && ingredient.unit !== '' && 
+                                    units.map((unit, index) => {
+                                      return <option key={index.toString()} value={unit}>{`${unit}`}</option>      
                                 })}
-                              </select>
-                            </div>
-                          }
-                       </li>
-              })}
-            </ul>
+                                </select>
+                                
+                                <button className="convert-button" onClick={convert}>Convert to</button>
+                                
+                                <select className="convert-to-options">
+                                  {ingredient.unit !== 'slices' && ingredient.unit !== '' && 
+                                    units.map((unit, index) => {
+                                      return <option key={index.toString()}>{`${unit}`}</option>   
+                                  })}
+                                </select>
+                              </div>
+                            }
+                        </li>
+                })
+                }
+              </ul>
+            </div>
             <div className="convert-button-container">
               <button className="convert-button" onClick={toggle}>Convert ingredient units</button>  
             </div>
+
+            {/* <div className="recipe-steps">
+              <ol>
+              {recipe.steps.map((step, index) => {
+                return <li key={index.toString()} className="step">{`${step}`}</li>
+              })
+              }
+              </ol>        
+            </div> */}
+          </div>
+
+          <div className="instructions">
+            <h4>Directions</h4>
+            <div className="sub-parts">
+              {recipe.instructions.map((subPart, partIndex) => {
+                return (
+                  <div className="sub-part">
+                    <ol className="steps">
+                      <h4>{recipe.instructions.length === 1 ? '' : `Part ${partIndex+1}:`}</h4>
+                      <h4>{recipe.instructions.length === 1 ? '' : `${subPart.name}`}</h4> {/* TODO conditional render without checking length twice please */}
+
+                      {subPart.steps.map((stepObj, stepIndex) => {
+                        return (
+                          <div key={stepIndex.toString()}>
+                            <br />
+                            <li className="step">
+                              <div>
+                                <br />
+                                {`${stepObj.step}`}
+                              </div>
+                            </li>
+                          </div>             
+                        )
+                      })
+                      }  
+                    </ol>
+                  </div> 
+                )                        
+              })
+              }
+            </div>        
           </div>
         </div>
       );
