@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Page.css';
 
 function Page(props) {
-    const {recipe, side = "left", units, pageNumber, flipPage} = props;
+    const {recipe, side = "left", units, pageNumber, flipPage, zoomIn} = props;
     const [recipeMeasurements, setRecipeMeasurements] = useState(recipe.ingredients);
     const [isOpened, setIsOpened] = useState(false);
 
@@ -197,15 +197,6 @@ function Page(props) {
             <div className="convert-button-container">
               <button className="convert-button" onClick={toggle}>Convert ingredient units</button>  
             </div>
-
-            {/* <div className="recipe-steps">
-              <ol>
-              {recipe.steps.map((step, index) => {
-                return <li key={index.toString()} className="step">{`${step}`}</li>
-              })
-              }
-              </ol>        
-            </div> */}
           </div>
 
           <div className="instructions">
@@ -239,6 +230,7 @@ function Page(props) {
               }
             </div>        
           </div>
+          <button className="zoom-in-button" onClick={() => zoomIn(side)}>zoom in</button>
         </div>
       );
 }
