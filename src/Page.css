@@ -69,6 +69,10 @@ li {
 button {
   background-color: lightyellow; 
   font-size: 1.25vw;
+  font-family: 'Oswald', sans-serif;
+  border-radius: 500px;
+  background-color: burlywood;
+  transition: 0.4s;
 }
 
 button:hover {
@@ -110,4 +114,8 @@ div.step-text {
   text-align: center;  
   overflow-wrap: break-word;
   padding: 6%;
+}
+
+div.page.left + div.page.right {
+  border-left: solid black 0.25em;
 }
