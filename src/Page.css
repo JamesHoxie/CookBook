@@ -2,51 +2,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400&family=Oswald&display=swap');
 
 .page {
-    background-color: lightyellow;
-    display: inline-block;
-    width : 47%;
-    max-width: 47%;
-    min-width: 47%;
-    height: 100%;
-    /* overflow-y:auto; add scroll bar to recipe page when ingredients won't fit on one page */
-    overflow-y: scroll;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */ 
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 110%;
-  }
+  background-color: lightyellow;
+  display: inline-block;
+  width : 47%;
+  max-width: 47%;
+  min-width: 47%;
+  height: 100%;
+  /* overflow-y:auto; add scroll bar to recipe page when ingredients won't fit on one page */
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */ 
+  font-family: 'Barlow Condensed', sans-serif;
+}
 
-  .page.left {
-    box-shadow:
-    /* The top layer shadow */
-    0 1px 1px rgba(0,0,0,0.15),
-    /* The second layer */
-    -10px 0 0 -5px lightyellow,
-    /* The second layer shadow */
-    -10px 0 1px -4px rgba(0,0,0,0.15),
-    /* The third layer */
-    -20px 0 0 -10px lightyellow,
-    /* The third layer shadow */
-    -20px 0 1px -9px rgba(0,0,0,0.15);
-  }
+.page.left {
+  box-shadow:
+  /* The top layer shadow */
+  0 1px 1px rgba(0,0,0,0.15),
+  /* The second layer */
+  -10px 0 0 -5px lightyellow,
+  /* The second layer shadow */
+  -10px 0 1px -4px rgba(0,0,0,0.15),
+  /* The third layer */
+  -20px 0 0 -10px lightyellow,
+  /* The third layer shadow */
+  -20px 0 1px -9px rgba(0,0,0,0.15);
+}
 
-  .page.right {
-    box-shadow:
-    /* The top layer shadow */
-    0 1px 1px rgba(0,0,0,0.15),
-    /* The second layer */
-    10px 0 0 -5px lightyellow,
-    /* The second layer shadow */
-    10px 0 1px -4px rgba(0,0,0,0.15),
-    /* The third layer */
-    20px 0 0 -10px lightyellow,
-    /* The third layer shadow */
-    20px 0 1px -9px rgba(0,0,0,0.15);
-  }
+.page.right {
+  box-shadow:
+  /* The top layer shadow */
+  0 1px 1px rgba(0,0,0,0.15),
+  /* The second layer */
+  10px 0 0 -5px lightyellow,
+  /* The second layer shadow */
+  10px 0 1px -4px rgba(0,0,0,0.15),
+  /* The third layer */
+  20px 0 0 -10px lightyellow,
+  /* The third layer shadow */
+  20px 0 1px -9px rgba(0,0,0,0.15);
+}
 
-  .page::-webkit-scrollbar { /* WebKit */
-    width: 0;
-    height: 0;
+.page::-webkit-scrollbar { /* WebKit */
+  width: 0;
+  height: 0;
 }
 
 .ingredients-list {
@@ -54,12 +53,12 @@
 }
 
 img {
-  width: auto;
-  height: 60%;
+  width: 75%;
+  height: 50%;
 }
-  
-.page.right {
-    border-left: solid black 0.25em;
+
+li {
+  width: 25%;
 }
 
 .ingredient:hover {
@@ -68,7 +67,8 @@ img {
 }
 
 button {
-  background-color: lightyellow;
+  background-color: lightyellow; 
+  font-size: 1.25vw;
 }
 
 button:hover {
@@ -83,6 +83,31 @@ button:hover {
   float: right;
 }
 
+.zoom-in-button.left {
+  float: left;
+}
+
+.zoom-in-button.right {
+  float: right;
+}
+
 div.convert-button-container {
   text-align: center;
+}
+
+div.step-header {
+  font-weight: bold;
+}
+
+div.step-text {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%); 
+  background-color: rgba(0,0,0,.07);
+  border-radius: 50%;
+  width: 50%;
+  justify-content: center;
+  text-align: center;  
+  overflow-wrap: break-word;
+  padding: 6%;
 }

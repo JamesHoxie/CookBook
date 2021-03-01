@@ -15,3 +15,20 @@
   flex-direction: horizontal;
   justify-content: center;
 }
+
+.zoomed-in {
+  width: 150%;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+}
+
+.zoomed-in-background {
+  position: absolute;
+  background-color: rgba(0, 0, 0, .75);
+  width: 100vw;
+  left:0;
+  right:0;
+  top: 0;
+}

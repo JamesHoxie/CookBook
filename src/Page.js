@@ -154,6 +154,8 @@ function Page(props) {
     return (
         <div className={`page ${side}`}>
           <button className={`flip-button ${side}`} onClick={flipPage}>Flip page</button>
+          <button className={`zoom-in-button ${side}`} onClick={() => zoomIn(side)}>Zoom in</button>
+          <br/>
           <h5>{pageNumber}</h5>
           <h3>{recipe.name}</h3>
           <p>{recipe.description}</p>
@@ -204,33 +206,42 @@ function Page(props) {
             <div className="sub-parts">
               {recipe.instructions.map((subPart, partIndex) => {
                 return (
-                  <div className="sub-part">
-                    <ol className="steps">
-                      <h4>{recipe.instructions.length === 1 ? '' : `Part ${partIndex+1}:`}</h4>
-                      <h4>{recipe.instructions.length === 1 ? '' : `${subPart.name}`}</h4> {/* TODO conditional render without checking length twice please */}
-
+                  <div key={partIndex.toString()} className="sub-part">
+                    <br />
+                    {recipe.instructions.length > 1 && 
+                    <div>
+                      <h4>{`Part ${partIndex+1}:`}</h4>
+                      <h4>{`${subPart.name}`}</h4>
+                    </div>             
+                    }
+                    <div className="steps">
                       {subPart.steps.map((stepObj, stepIndex) => {
                         return (
                           <div key={stepIndex.toString()}>
                             <br />
-                            <li className="step">
+                            <div className="step">
                               <div>
+                                <div className="step-header">
+                                  {`Step ${stepIndex+1}.`}
+                                </div>
                                 <br />
-                                {`${stepObj.step}`}
+                                <div className="step-text">
+                                  {`${stepObj.step}`}
+                                </div>
+                                <br />
                               </div>
-                            </li>
+                            </div>
                           </div>             
                         )
                       })
                       }  
-                    </ol>
+                    </div>
                   </div> 
                 )                        
               })
               }
             </div>        
           </div>
-          <button className="zoom-in-button" onClick={() => zoomIn(side)}>zoom in</button>
         </div>
       );
 }
