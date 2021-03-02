@@ -12,17 +12,18 @@ function App() {
   const [recipes, setRecipes] = useState([]);
 
   // set of all ingredient amounts for displaying in conversion selection drop down and their alternative abreviations
-  const units = {"tsp": ["teaspoon", "teaspoons", "t", "ts", "tspn"],
+  const units = {"tsp": ["teaspoon", "teaspoons", "t", "ts", "tspn", "tsps"],
                  "tbsp": ["tablespoon", "tablespoons", "t", "tb", "tbl", "tbs", "tbsp"],
                  "cups": ["cup", "c"],
                  "L": ["liter", "liters", "l"],
                  "mL": ["milliliter", "milliliters", "ml"],
                  "kg": ["kilogram", "kilograms"],
-                 "g": ["gram", "grams"],
+                 "g": ["gram", "grams", "gr"],
                  "oz": ["ounce", "ounces"],
-                 "lb": ["pound", "pounds"],
-                 "pt": ["pint", "pints"],
-                 "gal": ["gallon"]
+                 "lb": ["pound", "pounds", "lbs"],
+                 "pt": ["pint", "pints", "pts"],
+                 "gal": ["gallon", "gallons", "gals"],
+                 "qt": ["quart", "quarts", "qts"]
   }
   
   // convert other spellings/abreviations of units to type recognized for display

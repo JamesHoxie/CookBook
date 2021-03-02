@@ -4,7 +4,15 @@ import './Page.css';
 function Page(props) {
     const {recipe, side = "left", units, pageNumber, flipPage, zoomIn} = props;
     const [recipeMeasurements, setRecipeMeasurements] = useState(recipe.ingredients);
-    const [isOpened, setIsOpened] = useState(false);
+    const o = (() => recipe.ingredients.map((ingredient) => false))();
+    console.log(o);
+    // immediately invoked function expression to map all ingredients to a list of booleans determining
+    // if that ingredient is opened for conversion or closed
+    // [eggs, flour, milk] -> [false, false, false]
+    // when an ingredient is clicked, (say, eggs for example)
+    // then... [true, false, false]
+    // only display conversion options when an ingredient element is opened
+    const [isOpened, setIsOpened] = useState(o);
 
     useEffect(() => {
       // this runs everytime the recipe prop changes (second arg to the useEffect hook), we call setRecipeMeasurements to change the state
@@ -56,14 +64,19 @@ function Page(props) {
       return amount;
     };
 
-    // close and open conversion buttons below ingredients
-    function toggle() {
-      setIsOpened(wasOpened => !wasOpened);
+    // toggle whether conversion options are displayed for ingredients on page
+    function toggle(index) {
+      setIsOpened(prevOpened => {
+        const updatedOpened = [...prevOpened];
+        updatedOpened[index] = !updatedOpened[index];
+
+        return updatedOpened;
+      });
     }
 
     // change recipe measurements state when doing conversions
     function updateRecipeMeasurements(ingredientType, convertedAmount, newUnits) {
-      toggle();
+      // toggle();
       setRecipeMeasurements(oldMeasurements => {
         const newMeasurements = JSON.parse(JSON.stringify(oldMeasurements)); // create deep copy of old measurements object
 
@@ -79,17 +92,25 @@ function Page(props) {
       });
     }
 
+    const handleSelectClick = (e) => {
+      e.stopPropagation();
+    }
+
     // convert selected ingredients 
-    const convert = async (event) => {
+    const convert = async (event, index) => {
+      event.stopPropagation();
+
       let ingredientAmount = null;
       let ingredientType = null;
+      let convertFrom = null;
 
       // IMPORTANT NOTE:
       // this line will not work if the ingredient li structure is modified
-      const liElement = event.target.parentElement.parentElement; 
       // selecting parent of parent of clicked button in li to access the span element with the ingredient amount
+      const liElement = event.target.parentElement.parentElement; 
       
-      ingredientType = liElement.firstChild.textContent;
+      // selecting first child of li element is div, first element of div is span with text content equal to ingredient type
+      ingredientType = liElement.firstChild.firstChild.textContent;
 
       liElement.childNodes.forEach(element => {
         if(element.className === 'ingredient-amount') {
@@ -101,16 +122,19 @@ function Page(props) {
             ingredientAmount = parseInt(element.textContent);
           }
           
+        } else if(element.className === 'ingredient-unit') {
+          convertFrom = element.textContent;
         }
       });
 
       // IMPORTANT NOTE:
       // this line will also not work if the ingredient li structure is modified
-      const divElement = event.target.parentElement;
       // selecting parent of clicked button in li to access the select elements to get the ingredient units
+      const divElement = event.target.parentElement;
+      
 
-      const selectFrom = divElement.firstChild;
-      const convertFrom = selectFrom.options[selectFrom.selectedIndex].text;
+      // const selectFrom = divElement.firstChild;
+      // const convertFrom = selectFrom.options[selectFrom.selectedIndex].text;
 
       const selectTo = divElement.lastChild;
       const convertTo = selectTo.options[selectTo.selectedIndex].text;
@@ -121,6 +145,7 @@ function Page(props) {
       const convertedAmount = await callSpoonacular(ingredientType, ingredientAmount, convertFrom, convertTo);
 
       updateRecipeMeasurements(ingredientType, convertedAmount, convertTo);
+      toggle(index);
     }
 
     // perform fetch call to spoonacular api to convert ingredient amounts
@@ -167,26 +192,19 @@ function Page(props) {
             <div className="ingredients-list">
               <ul>
                 {recipeMeasurements.map((ingredient, index) => {
-                  return <li key={index.toString()} className="ingredient">
-                            <strong>{ingredient.name}</strong>: <span className="ingredient-amount">{numberToFraction(ingredient.amount) + ' '}</span>
+                  return <li key={index.toString()} className="ingredient" onClick={() => toggle(index)}>
+                            <div className="ingredient-name"><strong>{ingredient.name}</strong>:</div> <span className="ingredient-amount">{numberToFraction(ingredient.amount) + ' '}</span>
 
                             <span className="ingredient-unit">{ingredient.unit}</span>
                             
-                            {isOpened && units.includes(ingredient.unit) &&
-                              <div>
-                                <select className="convert-from-options" defaultValue={ingredient.unit}>
+                            {isOpened[index] && units.includes(ingredient.unit) &&
+                              <div>                                
+                                <button className="convert-button" onClick={(e) => convert(e, index)}>Convert to</button>
+                                
+                                <select className="convert-to-options" defaultValue={ingredient.unit} onClick={handleSelectClick}>
                                   {ingredient.unit !== 'slices' && ingredient.unit !== '' && 
                                     units.map((unit, index) => {
-                                      return <option key={index.toString()} value={unit}>{`${unit}`}</option>      
-                                })}
-                                </select>
-                                
-                                <button className="convert-button" onClick={convert}>Convert to</button>
-                                
-                                <select className="convert-to-options">
-                                  {ingredient.unit !== 'slices' && ingredient.unit !== '' && 
-                                    units.map((unit, index) => {
-                                      return <option key={index.toString()}>{`${unit}`}</option>   
+                                      return <option key={index.toString()} value={unit}>{`${unit}`}</option>   
                                   })}
                                 </select>
                               </div>
@@ -195,9 +213,6 @@ function Page(props) {
                 })
                 }
               </ul>
-            </div>
-            <div className="convert-button-container">
-              <button className="convert-button" onClick={toggle}>Convert ingredient units</button>  
             </div>
           </div>
 

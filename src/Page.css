@@ -58,25 +58,33 @@ img {
 }
 
 li {
-  width: 25%;
+  width: 37%;
+}
+
+.ingredient {
+  margin-top: 5%;
+  border: solid lightyellow 0.15em;
 }
 
 .ingredient:hover {
-  border: solid black 0.15em;
+  border: solid green 0.15em;
   border-radius: 5%;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
-button {
-  background-color: lightyellow; 
+button, select { 
   font-size: 1.25vw;
   font-family: 'Oswald', sans-serif;
   border-radius: 500px;
   background-color: burlywood;
-  transition: 0.4s;
+  border: outset black 0.15em;
 }
 
-button:hover {
+button:hover, select:hover {
   background-color: gold;
+  transition: 0.4s;
+  cursor: pointer;
 }
 
 .flip-button.left {
