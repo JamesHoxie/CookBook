@@ -61,21 +61,8 @@ function App() {
       recipe.description = recipeDataObject.summary.replace(/<\/?[^>]+(>|$)/g, "");; // set description of dish in recipe (currently using regex to strip out html tags, TODO: do this better without regex please)
       recipe.image = recipeDataObject.image; // set image of dish in recipe
       recipe.ingredients = processIngredients(recipeDataObject.extendedIngredients); // set ingredients of dish in recipe
-      // recipe.steps = recipeDataObject.instructions.replace(/<\/?[^>]+(>|$)/g, "").split('\n');
-      console.log(recipeDataObject.analyzedInstructions)
-      //recipe.steps = recipeDataObject.analyzedInstructions[0].steps.map(stepObj => stepObj.step);
-
-      //recipe.instructions = [{name: 'part 1', steps: ['do this', 'do that']}, {name: 'part 2', steps: ['do not do this', 'do not do that']}];
       
       recipe.instructions = recipeDataObject.analyzedInstructions; // object mapping numbers as keys to subPart objects with a name and steps properties
-
-      // recipeDataObject.analyzedInstructions.forEach(subPart => {
-      //   recipe.subParts.push(subPart.steps.map(stepObj => stepObj.step));
-      // })
-
-      // for(let subPart in recipeDataObject.analyzedInstructions) {
-      //   recipe.subParts.push(subPart.steps.map(stepObj => stepObj.step));
-      // }
 
       return recipe;
     });

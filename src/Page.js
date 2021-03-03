@@ -4,27 +4,22 @@ import './Page.css';
 function Page(props) {
     const {recipe, side = "left", units, pageNumber, flipPage, zoomIn} = props;
     const [recipeMeasurements, setRecipeMeasurements] = useState(recipe.ingredients);
-    const o = (() => recipe.ingredients.map((ingredient) => false))();
-    console.log(o);
+    
     // immediately invoked function expression to map all ingredients to a list of booleans determining
     // if that ingredient is opened for conversion or closed
     // [eggs, flour, milk] -> [false, false, false]
     // when an ingredient is clicked, (say, eggs for example)
     // then... [true, false, false]
     // only display conversion options when an ingredient element is opened
-    const [isOpened, setIsOpened] = useState(o);
+    const [isOpened, setIsOpened] = useState((() => recipe.ingredients.map((ingredient) => false))());
 
     useEffect(() => {
       // this runs everytime the recipe prop changes (second arg to the useEffect hook), we call setRecipeMeasurements to change the state
       // we only maintain state based on measurements, since conversions cannot change the name or image of a recipe
       // so we need to update internal page state to now reflect new measurements from the new recipe prop being passed on page flip
-      // NOTE: this means that conversions done on a page are lost upon page flips, this is going to be intended behavior for now
       setRecipeMeasurements(oldMeasurements => recipe.ingredients);
     }, [recipe]);
 
-    // function to convert a decimal to a fraction
-    // original snippet from: https://danielbachhuber.com/2019/02/04/javascript-number-fraction/
-    // modifications made to convert thirds
     const numberToFraction = function( amount ) {
       // This is a whole number and doesn't need modification.
       if ( parseFloat( amount ) === parseInt( amount ) ) {
@@ -41,7 +36,6 @@ function Page(props) {
         }
       }
 
-      // Next 12 lines are cribbed from https://stackoverflow.com/a/23575406.
       var gcd = function(a, b) {
         if (b < 0.0000001) {
           return a;
@@ -76,7 +70,6 @@ function Page(props) {
 
     // change recipe measurements state when doing conversions
     function updateRecipeMeasurements(ingredientType, convertedAmount, newUnits) {
-      // toggle();
       setRecipeMeasurements(oldMeasurements => {
         const newMeasurements = JSON.parse(JSON.stringify(oldMeasurements)); // create deep copy of old measurements object
 
@@ -104,9 +97,6 @@ function Page(props) {
       let ingredientType = null;
       let convertFrom = null;
 
-      // IMPORTANT NOTE:
-      // this line will not work if the ingredient li structure is modified
-      // selecting parent of parent of clicked button in li to access the span element with the ingredient amount
       const liElement = event.target.parentElement.parentElement; 
       
       // selecting first child of li element is div, first element of div is span with text content equal to ingredient type
@@ -127,19 +117,9 @@ function Page(props) {
         }
       });
 
-      // IMPORTANT NOTE:
-      // this line will also not work if the ingredient li structure is modified
-      // selecting parent of clicked button in li to access the select elements to get the ingredient units
       const divElement = event.target.parentElement;
-      
-
-      // const selectFrom = divElement.firstChild;
-      // const convertFrom = selectFrom.options[selectFrom.selectedIndex].text;
-
       const selectTo = divElement.lastChild;
       const convertTo = selectTo.options[selectTo.selectedIndex].text;
-        
-      console.log(ingredientType, ingredientAmount, convertFrom, convertTo);
 
       //api fetch call to spoonacular to convert amounts
       const convertedAmount = await callSpoonacular(ingredientType, ingredientAmount, convertFrom, convertTo);
