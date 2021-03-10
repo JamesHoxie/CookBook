@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Page.css';
 
+// component representing left or right page of cookbook parent component
 function Page(props) {
     const {recipe, side = "left", units, pageNumber, flipPage, zoomIn} = props;
     const [recipeMeasurements, setRecipeMeasurements] = useState(recipe.ingredients);
@@ -148,7 +149,6 @@ function Page(props) {
         return resp.json();
       })
       .then(data => {
-        console.log('success!\n', data.targetAmount);
         return data.targetAmount;
       })
       .catch(err => {

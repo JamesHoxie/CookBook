@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"; 
 import Cookbook from './Cookbook';
 
+
+// main component of program, returns div containing cookbook component
 function App() {
   useEffect(() => {
     // make one call to spoonacular to add 2 recipes on inital app load, useEffect runs once with empty dependency array
@@ -70,8 +72,6 @@ function App() {
 
   // perform api call to spoonacular to fetch 2 new recipes for display when flipping pages past limits of current recipe list
   const getNewRecipes = () => {
-    console.log(recipes.length);
-
     const params = {
       'limitLicense': true,
       'number': 2,

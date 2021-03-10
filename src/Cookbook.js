@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './CookBook.css';
 import Page from './Page';
 
+// main functional component of application, consists of 2 page components
 function Cookbook(props) {
   const recipes = props.recipes;
   const addRecipes = props.addRecipes;
