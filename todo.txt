@@ -1,9 +1,0 @@
-need to convert recipe amounts into fractions for display
-
-adjust loading display (low priority)
-
-page flip on screen drag left to right / css page flip animation
-
-general visual enchancements
-
-display steps to recipes in pages
